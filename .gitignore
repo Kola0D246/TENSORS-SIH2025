@@ -36,8 +36,6 @@ local_settings.py
 */migrations/*.pyc
 */migrations/*.pyo
 */migrations/*.pyd
-# Optional: uncomment below to ignore all migration files
-# */migrations/*
 
 # ======================
 # IDE / Editor
