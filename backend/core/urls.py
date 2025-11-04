@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('apps.api.urls')),  # 👈 API entry point
+    path('api-auth/', include('rest_framework.urls')),  # 👈 adds the login/logout link
 ]
