@@ -1,0 +1,109 @@
+1️⃣ Models
+
+Institute, Department, Course, Subject, Faculty, Student → basic schema aligned with DataSchema.md.
+
+Faculty & Student now have a OneToOneField to User (faculty_profile, student_profile) for mapping User → domain models.
+
+TimeSlot, Infra, FacultyUnavailability, Occupancy models created:
+
+FacultyUnavailability has status field (pending, approved, rejected) for HOD approval workflow.
+
+Occupancy has unique_together constraint on room + timeslot to prevent double-booking.
+
+2️⃣ Serializers
+
+Hybrid approach:
+
+Config-type models (Institute, Course, Subject, TimeSlot, Infra, Occupancy) → fields='__all__'.
+
+User-facing models (Department, Faculty, Student, User) → explicit fields + read-only derived fields (department_name, faculty_name, etc.).
+
+FacultyUnavailabilitySerializer prevents Faculty from directly changing status or timestamps; HOD approves separately.
+
+OccupancySerializer includes derived fields (faculty_name, subject_name, room_name) and read-only student IDs.
+
+3️⃣ ViewSets
+
+Each model has a DRF ModelViewSet.
+
+UserViewSet filters by role:
+
+Admin → all users in institute
+
+HOD → users in their department
+
+Faculty → own record (optionally students in department)
+
+Student → self only
+
+OccupancyViewSet has a custom scheduler endpoint (scheduler_update) for AI algorithms or HOD to update Occupancy.
+
+FacultyUnavailabilityViewSet has HOD approve/reject actions and allows Faculty to submit/update only their own pending requests.
+
+4️⃣ Permissions (RoleBasedAccessPermission)
+
+Read permissions (SAFE_METHODS):
+
+Admin → everything
+
+HOD → all data in their department
+
+Faculty → own department info, own record only for Faculty personal info
+
+Student → self info + general tables (Timeslot, Infra, Courses, Occupancy)
+
+Write permissions:
+
+Admin → everything
+
+HOD → own department objects + approve/reject FacultyUnavailability + update Occupancy
+
+Faculty → only their own pending FacultyUnavailability (POST/PUT/PATCH)
+
+Student → cannot modify anything
+
+Occupancy write is restricted to HOD and the scheduler endpoint.
+
+Object-level permissions use faculty_profile / student_profile mapping.
+
+5️⃣ URLs
+
+All viewsets registered via DefaultRouter.
+
+Custom actions (scheduler update, approve/reject FacultyUnavailability) are automatically exposed as endpoints:
+
+POST /occupancies/scheduler-update/ → AI scheduler/HOD updates
+
+POST /facultyunavailability/{id}/approve/ → HOD approves
+
+POST /facultyunavailability/{id}/reject/ → HOD rejects
+
+No separate URL file needed for these actions; RESTful structure maintained.
+
+6️⃣ Workflows Implemented
+
+Faculty can submit planned unavailability (POST) and edit it while pending.
+
+HOD can approve/reject faculty unavailability.
+
+HOD can update Occupancy; AI scheduler can call /scheduler-update/ endpoint.
+
+Read/write permissions fully follow your rules from chat:
+
+Admin → everything
+
+HOD → department + faculty/student + occupancy
+
+Faculty → own pending unavailability only
+
+Student → own info + general read-only tables
+
+7️⃣ Outstanding / Next Steps (optional)
+
+Scheduler token authentication for AI algorithms (to prevent misuse).
+
+Automatic blocking of Occupancy when HOD approves FacultyUnavailability.
+
+Nested serializers for better API consumption (e.g., Student → Courses → Subjects).
+
+Filtering, pagination, and optional audit logs for large institutes.

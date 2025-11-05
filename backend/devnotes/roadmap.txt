@@ -1,0 +1,19 @@
+#############
+What's next???
+#############
+
+Test CRUD — open endpoints (/api/institutes/, /api/departments/) via Postman or browser
+
+Verify permissions — ensure Faculty, HOD, Student read/write restrictions work as intended
+
+Integrate AI logic — implement OR-Tools / OptaPlanner timetable generation inside scheduler/utils/
+
+Add token-based authentication for scheduler to allow AI system to safely call /occupancies/scheduler-update/
+
+Optional enhancements:
+
+Nested serializers for better data representation
+
+Pagination, filtering, and search for large datasets
+
+Audit logs for approval, updates, and AI schedule changes

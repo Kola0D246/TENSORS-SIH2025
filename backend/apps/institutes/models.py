@@ -40,6 +40,7 @@ class Faculty(models.Model):
     faculty_name = models.CharField(max_length=255)
     primary_subjects = models.ManyToManyField(Subject, related_name='primary_faculties')
     secondary_subjects = models.ManyToManyField(Subject, related_name='secondary_faculties', blank=True)
+    user = models.OneToOneField('users.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='faculty_profile')
 
     def __str__(self):
         return self.faculty_name
@@ -50,6 +51,7 @@ class Student(models.Model):
     majors = models.ManyToManyField(Course, related_name='major_students', blank=True)
     minors = models.ManyToManyField(Course, related_name='minor_students', blank=True)
     electives = models.ManyToManyField(Course, related_name='elective_students', blank=True)
+    user = models.OneToOneField('users.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='student_profile')
 
     def __str__(self):
         return self.enrollment_no

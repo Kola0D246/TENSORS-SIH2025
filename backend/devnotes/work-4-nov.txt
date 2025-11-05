@@ -57,11 +57,3 @@ This paves the way for role-based access control and dashboard segregation.
 ✅ Added scheduler/utils/ placeholder for Google OR-Tools / OptaPlanner logic.
 This will later handle constraint-based timetable generation.
 
-
-#############
-What's next???
-#############
-
-1. Test CRUD — open /api/institutes/ or /api/departments/ in your browser or Postman and try creating a record.
-2. Add serializers & permissions (if not yet implemented) to control data access by role.
-3. Integrate OR-Tools logic into the scheduler/utils/ module later for timetable generation.
