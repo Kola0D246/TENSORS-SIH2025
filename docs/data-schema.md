@@ -4,6 +4,16 @@
 
 > All user-defined fields of two distinct rows in a table **cannot have the same value simultaneously**.
 
+## 🌐 Data type used
+
+1. key -> datatype for primary and foreign key. can be int or hexdec, but must be same across database
+2. int -> integer
+3. String -> string
+4. encrypted -> password, sensitive data
+5. dropdown -> has selected values only
+6. timestamp -> full date time YYYY-MM-DD HH:MM:SS
+7. time (hh:mm) -> hour:min
+
 ---
 
 ## 🏢 Site Data — Global
@@ -54,8 +64,8 @@
 | timeslot_id | int | not null | System | Primary key |
 | day | String | not null | User | — |
 | period_num | int | not null | User | — |
-| start_time | int | not null | User | — |
-| end_time | int | not null | User | — |
+| start_time | time (hh:mm) | not null | User | — |
+| end_time | time (hh:mm) | not null | User | — |
 
 ---
 
@@ -75,10 +85,10 @@
 | Field | Data Type | Constraint | Value By | Remark |
 |-------|------------|-------------|-----------|---------|
 | room_id | int | not null | System | Primary key, redex |
-| department_id | String | — | User (indirectly) | Foreign key, null if common use |
+| department_id | String | not null | - | Foreign key, null if common use |
 | type | dropdown | not null | User | `Class` (theory), `Lab` (practical) |
 | capacity | int | not null | User | Maximum seating capacity |
-| subject_ids | — | — | — | For labs: related subjects |
+| subject_ids | int | not null | — | For labs: related subjects |
 
 ---
 
