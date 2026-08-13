@@ -1,5 +1,5 @@
 from django.db import models
-from apps.institutes.models import Department, Faculty, Subject, Student
+from institutes.models import Department, Faculty, Subject, Student
 
 class TimeSlot(models.Model):
     day = models.CharField(max_length=20)

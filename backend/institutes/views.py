@@ -1,12 +1,7 @@
 from rest_framework import viewsets
-from .models import Institute, Department, Course, Subject, Faculty, Student
-from .serializers import InstituteSerializer, DepartmentSerializer, CourseSerializer, SubjectSerializer, FacultySerializer, StudentSerializer
-from apps.api.permissions import RoleBasedAccessPermission
-
-class InstituteViewSet(viewsets.ModelViewSet):
-    queryset = Institute.objects.all()
-    serializer_class = InstituteSerializer
-    permission_classes = [RoleBasedAccessPermission]
+from .models import Department, Course, Subject, Faculty, Student
+from .serializers import DepartmentSerializer, CourseSerializer, SubjectSerializer, FacultySerializer, StudentSerializer
+from api.permissions import RoleBasedAccessPermission
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()

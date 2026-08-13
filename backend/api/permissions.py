@@ -1,5 +1,5 @@
 from rest_framework import permissions
-from apps.institutes.models import Faculty, Student
+from institutes.models import Faculty, Student
 
 class RoleBasedAccessPermission(permissions.BasePermission):
     """

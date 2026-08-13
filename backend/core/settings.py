@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # projecct apps
-    'apps.institutes',
-    'apps.scheduler',
-    'apps.users',
-    'apps.api',
+    'institutes',
+    'scheduler',
+    'users',
+    'api',
 
     # third party apps
     'rest_framework',

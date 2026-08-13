@@ -3,8 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import TimeSlot, Infra, FacultyUnavailability, Occupancy
 from .serializers import TimeSlotSerializer, InfraSerializer, FacultyUnavailabilitySerializer, OccupancySerializer
-from apps.api.permissions import RoleBasedAccessPermission
-from apps.users.models import User
+from api.permissions import RoleBasedAccessPermission
+from users.models import User
 
 class TimeSlotViewSet(viewsets.ModelViewSet):
     queryset = TimeSlot.objects.all()

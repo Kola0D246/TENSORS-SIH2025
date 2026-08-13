@@ -1,26 +1,15 @@
 from django.db import models
 
-class Institute(models.Model):
-    name = models.CharField(max_length=255)
-    affiliation = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
-    official_communication = models.CharField(max_length=255)
-    email_domain = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
 class Department(models.Model):
-    institute = models.ForeignKey(Institute, on_delete=models.CASCADE)
     department_name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.department_name} ({self.institute.name})"
+        return f"{self.department_name}"
 
 class Course(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     course_name = models.CharField(max_length=255)
-    course_type = models.CharField(max_length=50, choices=[('major', 'Major'), ('minor', 'Minor'), ('elective', 'Elective')])
+    course_type = models.CharField(max_length=10, choices=[('major', 'Major'), ('minor', 'Minor'), ('elective', 'Elective')])
     enrolled_students = models.IntegerField(default=0)
 
     def __str__(self):

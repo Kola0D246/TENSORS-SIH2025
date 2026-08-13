@@ -1,17 +1,10 @@
 from rest_framework import serializers
-from .models import Institute, Department, Course, Subject, Faculty, Student
-
-class InstituteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Institute
-        fields = '__all__'
+from .models import Department, Course, Subject, Faculty, Student
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    institute_name = serializers.CharField(source='institute.name', read_only=True)
-
     class Meta:
         model = Department
-        fields = ['id', 'department_name', 'institute', 'institute_name']
+        fields = ['id', 'department_name']
 
 class CourseSerializer(serializers.ModelSerializer):
     department_name = serializers.CharField(source='department.department_name', read_only=True)

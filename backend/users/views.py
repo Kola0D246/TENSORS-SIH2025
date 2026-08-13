@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from .models import User
 from .serializers import UserSerializer
-from apps.api.permissions import RoleBasedAccessPermission
-from apps.institutes.models import Faculty, Student
+from api.permissions import RoleBasedAccessPermission
+from institutes.models import Faculty, Student
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

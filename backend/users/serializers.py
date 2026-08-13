@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import User
 
 class UserSerializer(serializers.ModelSerializer):
-    institute_name = serializers.CharField(source='institute.name', read_only=True)
     department_name = serializers.CharField(source='department.department_name', read_only=True)
 
     class Meta:
