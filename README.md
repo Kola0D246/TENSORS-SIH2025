@@ -10,14 +10,11 @@
 
 ## 📌 Overview
 
-> _Briefly describe the project and its purpose._  
 This project aims to automate and optimize the timetable scheduling process in higher education institutions using AI and constraint satisfaction algorithms. It minimizes clashes, balances faculty workload, and maximizes classroom utilization — aligning with NEP 2020’s multidisciplinary framework.
 
 ---
 
 ## 🎯 Problem Statement
-
-> _Explain the challenges faced by institutions that your system solves._
 
 - Limited classrooms and overlapping schedules  
 - Faculty constraints and uneven workload  
@@ -28,8 +25,6 @@ This project aims to automate and optimize the timetable scheduling process in h
 ---
 
 ## 💡 Proposed Solution
-
-> _Summarize your approach and what makes it unique._
 
 A **web-based platform** that:
 
@@ -53,8 +48,6 @@ A **web-based platform** that:
 ---
 
 ## 🏗️ System Architecture
-
-> _Describe or include an image/diagram of your architecture._
 
 **Core Modules:**
 
@@ -82,8 +75,6 @@ A **web-based platform** that:
 ---
 
 ## 🧮 Database Schema (Simplified)
-
-> _Add ER diagram or main tables here._
 
 **Core Tables:**
 
@@ -120,8 +111,6 @@ A **web-based platform** that:
 
 ## 🧰 Installation & Setup
 
-> _Provide setup instructions once your repo is ready._
-
 ```bash
 # Clone repository
 git clone https://github.com/<your-repo>/smart-scheduler.git
@@ -143,8 +132,6 @@ npm start
 ---
 
 ## AI / Optimization Workflow
-
-> Describe how your scheduler logic works (briefly).
 
 1. Base Generation: Constraint Satisfaction (Google OR-Tools)
 2. Incremental Updates: OptaPlanner for localized changes
